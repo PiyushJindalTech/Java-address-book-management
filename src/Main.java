@@ -1,11 +1,11 @@
 import java.util.Scanner;
 import services.Contact;
 
-class main {
+class Main {
     Contact contact = new Contact();
 
     public static void main(String args[]) {
-        main objMain = new main();
+        Main objMain = new Main();
         int n = 0;
         while (n < 10) {
             objMain.initiate();
