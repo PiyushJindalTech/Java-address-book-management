@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+import services.AddressBook;
 import services.Contact;
 
 class Main {
@@ -6,14 +8,39 @@ class Main {
 
     public static void main(String args[]) {
         Main objMain = new Main();
-        int n = 0;
-        while (n < 10) {
-            objMain.initiate();
-            n++;
+        while (true) {
+            objMain.Initiate();
         }
     }
 
-    private void initiate() {
+    private void Initiate() {
+        System.out.println("Press 1 for Create AddressBook \n");
+        System.out.println("Press 2 Select Address");
+
+        AddressBook addressBook = new AddressBook();
+        try (Scanner scanner = new Scanner(System.in)) {
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    addressBook.CreateAddressBook();
+                    break;
+
+                case 2:
+                    addressBook.GetAddressBookNames();
+                    System.out.println("Select Address Book Name");
+                    String addressBookName = scanner.nextLine();
+                    int addressBookId = addressBook.GetAddressBookId(addressBookName);
+                    EditAddressBook(addressBookId);
+                    break;
+
+                default:
+                    System.out.println("Invalid Option, try again!");
+            }
+        }
+    }
+
+    private void EditAddressBook(int addressBookId) {
         try {
             System.out.println("Press 1 for ADD CONTACT ");
             System.out.println("Press 2 for EDIT CONTACT ");
@@ -22,7 +49,7 @@ class Main {
             int input = new Scanner(System.in).nextInt();
             switch (input) {
                 case 1:
-                    contact.AddContact();
+                    contact.AddContact(addressBookId);
                     System.out.println("Contact Added! ");
                     break;
                 case 2:
@@ -37,7 +64,7 @@ class Main {
                     contact.DeleteContact(contactNameForDelete);
                     break;
                 case 4:
-                    contact.DisplayContactList();
+                    contact.DisplayContactList(addressBookId);
                     break;
                 default:
                     System.out.println("INVALID");

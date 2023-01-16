@@ -2,6 +2,7 @@ package models;
 
 public class ContactModel {
     public int contactId;
+    public int addressBookId;
     public String firstname;
     public String lastname;
     public String address;

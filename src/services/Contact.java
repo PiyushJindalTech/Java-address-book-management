@@ -7,8 +7,9 @@ import models.ContactModel;
 public class Contact {
     static ArrayList<ContactModel> contactList = new ArrayList<ContactModel>();
 
-    public void AddContact() {
+    public void AddContact(int addressBookId) {
         ContactModel contactModel = new ContactModel();
+        contactModel.addressBookId = addressBookId;
         System.out.println("Enter your details as follows ");
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter first  name ");
@@ -37,7 +38,7 @@ public class Contact {
         contactList.add(contactModel);
     }
 
-    public void DisplayContactList() {
+    public void DisplayContactList(int addressBookId) {
         contactList.forEach((contact) -> {
             System.out.println("Name :  " + contact.firstname + " " + contact.lastname);
             System.out.println("Address :  " + contact.address);
